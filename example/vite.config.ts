@@ -17,6 +17,7 @@ export default {
     alias: {
         '/@/': join(__dirname, 'src'),
         '/~/': join(__dirname, 'src/assets'),
+        '/vue-pandora-decorators/': join(__dirname, 'src/src'),
     },
     minify: 'esbuild',
     base: process.env.VITE_BASE_URL,

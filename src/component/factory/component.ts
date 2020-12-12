@@ -70,7 +70,7 @@ export class ComponentFactory<
                     proxy[key] = this.synchro(target[key]);
                     return target[key];
                 }
-                return proxy[key];
+                return isFunction(proxy[key]) ? proxy[key].bind(proxy) : proxy[key];
             },
             set: (target, key: string, value) => {
                 if (this.isProps(proxy, key)) { return target.props[key] = value; }

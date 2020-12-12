@@ -12,7 +12,7 @@
     <router-view />
 </template>
 <script lang="ts">
-import { Component, PureComponent, state, computed } from 'vue-pandora-decorator';
+import { Component, PureComponent, state, computed } from '/vue-pandora-decorators/index';
 import { PermissionModule } from '../store/modules/permission';
 // import { Layout, LayoutState } from './store';
 

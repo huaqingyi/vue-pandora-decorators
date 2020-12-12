@@ -4,7 +4,7 @@
     <div>{{object}}</div>
 </template>
 <script lang="ts">
-import { Component, Mixin } from 'vue-pandora-decorator';
+import { Component, Mixin } from '/vue-pandora-decorators/index';
 // import { reactive, ref } from 'vue';
 import Test2 from './test2.vue';
 

@@ -5,11 +5,11 @@
     <div>{{object}}</div>
     <div>{{test}}</div>
     <div>{{computed}}</div>
-    <el-button @click="()=>edit()">修改</el-button>
+    <el-button @click="edit">修改</el-button>
 </template>
 <script lang="ts">
 import { ToRefs, watch } from 'vue';
-import { Component, dynamic, Prop, PureComponent, Reactived, computed } from 'vue-pandora-decorator';
+import { Component, dynamic, Prop, PureComponent, Reactived, computed } from '/vue-pandora-decorators/index';
 
 export interface Props {
     aaa: number;

@@ -1,4 +1,4 @@
-import { VuexModule, Module, Action, Mutation } from 'vue-pandora-decorator';
+import { VuexModule, Module, Action, Mutation } from '/vue-pandora-decorators/index';
 import store from '/@/store';
 
 export interface LayoutState {

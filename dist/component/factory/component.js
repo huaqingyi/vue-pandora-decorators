@@ -42,7 +42,7 @@ class ComponentFactory extends factory_1.Factory {
                     proxy[key] = this.synchro(target[key]);
                     return target[key];
                 }
-                return proxy[key];
+                return lodash_1.isFunction(proxy[key]) ? proxy[key].bind(proxy) : proxy[key];
             },
             set: (target, key, value) => {
                 if (this.isProps(proxy, key)) {
