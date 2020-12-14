@@ -7,16 +7,16 @@ type ComputedReadonly<T> = {
     readonly [P in keyof T]: ComputedRef<T[P]>;
 };
 
-export function useState<State>(module: VuexModuleClass<VuexModule>, isDecorator: true): <T>() => T;
-export function useState<State>(module: VuexModuleClass<VuexModule>): ComputedReadonly<State>;
-export function useState<State>(module: VuexModuleClass<VuexModule>, isDecorator?: true) {
+export function useState<State>(module: VuexModuleClass<VuexModule>): State;
+export function useState<State>(module: VuexModuleClass<VuexModule>, toComputed: true): ComputedReadonly<State>;
+export function useState(module: VuexModuleClass<VuexModule>, toComputed?: true) {
     const state = useStore().state[module.id];
     return new Proxy(state, {
         get(target, key) {
-            if (!isDecorator) {
+            if (toComputed) {
                 return computed(() => target[key]);
             } else {
-                return () => target[key];
+                return target[key];
             }
         }
     });

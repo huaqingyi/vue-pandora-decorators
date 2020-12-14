@@ -1,2 +1,0 @@
-import './router';
-import './request';
