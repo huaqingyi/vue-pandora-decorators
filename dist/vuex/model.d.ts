@@ -8,6 +8,7 @@ export declare class VuexModule<S = ThisType<any>, R = any> extends VxModule {
     static keys: {
         [x: string]: string;
     };
+    static readonly store: Store<ThisType<any>>;
     static _root(): typeof VuexModule;
     static action(callback: (model: any & VuexModule) => Function): string;
 }

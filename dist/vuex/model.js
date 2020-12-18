@@ -42,6 +42,11 @@ function Module(options) {
         return (target) => {
             const store = options.store;
             const module = createdModel(target);
+            Object.defineProperty(module, 'store', {
+                get() {
+                    return store;
+                }
+            });
             store.registerModule(module.id, vuex_module_decorators_1.Module({ namespaced: true, ...options })(module));
         };
     }

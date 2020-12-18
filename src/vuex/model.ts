@@ -8,6 +8,7 @@ import { ModuleOptions } from 'vuex-module-decorators/dist/types/moduleoptions';
 export class VuexModule<S = ThisType<any>, R = any> extends VxModule {
     public static id: string;
     public static keys: { [x: string]: string };
+    public static readonly store: Store<ThisType<any>>;
     public static _root() {
         return VuexModule;
     }
@@ -45,6 +46,11 @@ export function Module(options: any): any {
         return (target: VuexModuleClass<VuexModule>) => {
             const store: Store<any> = options.store;
             const module = createdModel(target);
+            Object.defineProperty(module, 'store', {
+                get() {
+                    return store;
+                }
+            });
             store.registerModule(module.id, VModule({ namespaced: true, ...options } as ModuleOptions)(module));
         }
     }
