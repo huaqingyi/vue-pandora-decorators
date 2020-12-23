@@ -12,6 +12,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 __exportStar(require("./vuex"), exports);
-__exportStar(require("./component"), exports);
 
 //# sourceMappingURL=sourcemaps/index.js.map
