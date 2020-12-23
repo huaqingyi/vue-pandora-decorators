@@ -129,11 +129,11 @@ export class Layout extends VuexModule implements LayoutState {
     <router-view />
 </template>
 <script lang="ts">
-import { Component, Vue, useAction, useState } from 'vue-pandora-decorators';
+import { useAction, useState } from 'vue-pandora-decorators';
+import { Vue } from 'vue-class-component';
 import { PermissionModule } from '../store/modules/permission';
 import { Layout, LayoutState } from './store';
 
-@Component
 export default class extends Vue {
 
     public get roles() {
