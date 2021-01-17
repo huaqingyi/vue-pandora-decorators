@@ -41,3 +41,24 @@ export function useActions<M>(module: VuexModuleClass<M>): M {
     });
     return actions;
 }
+
+export function useCommit<M>(module: VuexModuleClass<M>): M {
+    const store = module.store;
+    return new Proxy<any>({}, {
+        get(target, key: any) {
+            if (module.mutations && module.mutations[key]) {
+                return async (...props: any) => await store.commit(module.action((module) => module[key]), ...props);
+            }
+            return target[key];
+        }
+    })
+}
+
+export function useCommits<M>(module: VuexModuleClass<M>): M {
+    const store = module.store;
+    const mutations: any = {};
+    map(module.mutations, (_f, n) => {
+        mutations[n] = (...props: any) => store.dispatch(module.action((module) => module[n]), ...props)
+    });
+    return mutations;
+}

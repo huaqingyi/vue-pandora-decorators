@@ -7,4 +7,6 @@ export declare function useState<State>(module: VuexModuleClass<VuexModule>): St
 export declare function useState<State>(module: VuexModuleClass<VuexModule>, toComputed: true): ComputedReadonly<State>;
 export declare function useAction<M>(module: VuexModuleClass<M>): M;
 export declare function useActions<M>(module: VuexModuleClass<M>): M;
+export declare function useCommit<M>(module: VuexModuleClass<M>): M;
+export declare function useCommits<M>(module: VuexModuleClass<M>): M;
 export {};
