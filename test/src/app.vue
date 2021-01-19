@@ -8,6 +8,7 @@ export default class extends Vue {
     public get test() {
         return useAction(AppStore).test;
     }
+    
     public mounted() {
         this.test({});
     }

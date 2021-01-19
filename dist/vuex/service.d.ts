@@ -14,4 +14,5 @@ export declare class Service implements VuexService {
     static getService(id: number): Service;
     static _root(): typeof Service;
 }
-export declare function useService<S extends (new () => Service)>(Service: S & any): any;
+export declare type ServiceClass<V> = (new (...args: any[]) => V & Service) & typeof Service;
+export declare function useService<S>(Service: ServiceClass<S>): S;

@@ -24,10 +24,12 @@ export class Service implements VuexService {
     }
 }
 
-export function useService<S extends (new () => Service)>(Service: S & any) {
+export declare type ServiceClass<V> = (new (...args: any[]) => V & Service) & typeof Service;
+
+export function useService<S>(Service: ServiceClass<S>): S {
     if (!Service.id) {
-        Service.id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
+        (Service as any).id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
     }
     if (!_service[Service.id]) { _service[Service.id] = new Service(); }
-    return Service.getService(Service.id);
+    return (Service as any).getService(Service.id);
 }

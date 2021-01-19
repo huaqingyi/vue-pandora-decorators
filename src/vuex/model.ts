@@ -2,7 +2,6 @@ export * from 'vuex-module-decorators';
 import { VuexModule as VxModule, Module as VModule } from 'vuex-module-decorators';
 import { Module as Mod, Store } from 'vuex';
 import { isFunction, map, merge } from 'lodash';
-import { Service } from './service';
 import { ModuleOptions } from 'vuex-module-decorators/dist/types/moduleoptions';
 
 export class VuexModule<S = ThisType<any>, R = any> extends VxModule {
@@ -18,7 +17,6 @@ export class VuexModule<S = ThisType<any>, R = any> extends VxModule {
     }
 }
 
-export type ServiceClass<V> = (new (...args: any[]) => V & Service) & typeof Service;
 export type VuexModuleClass<V> = (new (...args: any[]) => V & VuexModule) & typeof VuexModule;
 
 function createdModel<S>(module: Mod<S, any>): any {
