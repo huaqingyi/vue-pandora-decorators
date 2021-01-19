@@ -23,10 +23,7 @@ export type VuexModuleClass<V> = (new (...args: any[]) => V & VuexModule) & type
 
 function createdModel<S>(module: Mod<S, any>): any {
     if (!(module as any).id) {
-        (module as any).id = Number(
-            Math.random().toString().substring(3, 10) +
-            Date.now(),
-        ).toString(36);
+        (module as any).id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
     }
     (module as any).keys = {};
     map(merge({}, module.actions, module.mutations, module.getters), (o, i) => {
@@ -45,12 +42,13 @@ export function Module(options: any): any {
     } else {
         return (target: VuexModuleClass<VuexModule>) => {
             const store: Store<any> = options.store;
-            const module = createdModel(target);
-            Object.defineProperty(module, 'store', {
+            Object.defineProperty(target, 'store', {
                 get() {
                     return store;
                 }
             });
+            const module = createdModel(target);
+
             store.registerModule(module.id, VModule({ namespaced: true, ...options } as ModuleOptions)(module));
         }
     }

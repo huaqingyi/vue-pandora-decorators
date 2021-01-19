@@ -1,6 +1,6 @@
 <template>11111</template>
 <script lang="ts">
-import { Component, useAction, Vue } from './src';
+import { Component, useAction, Vue } from 'vue-pandora-decorators';
 import { AppStore } from './appStore';
 
 @Component

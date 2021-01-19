@@ -1,4 +1,4 @@
-import { Module, VuexModule, Action, Mutation, autowired } from './src';
+import { Module, VuexModule, Action, Mutation, useService } from 'vue-pandora-decorators';
 import store from '@/store';
 import { AppResponse, AppService, AppTestRequset } from './appService';
 
@@ -10,16 +10,15 @@ export interface IAppState {
 @Module({ store })
 export class AppStore extends VuexModule implements IAppState {
 
-    public service: AppService;
+    public get service() {
+        return useService(AppService);
+    }
+
     public datatime: string;
     public tableData: AppResponse;
 
-    @autowired(AppService)
-    public serv!: AppService;
-
     constructor(module: AppStore) {
         super(module);
-        this.service = new AppService();
         this.datatime = String((new Date()).getTime());
         this.tableData = new AppResponse();
     }

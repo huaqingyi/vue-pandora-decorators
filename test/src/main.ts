@@ -4,7 +4,7 @@ import App from './app.vue';
 
 export async function bootstrap() {
     const app = createApp(App);
-    app.use(store)
+    app.use(store as any);
     return app.mount('#app');
 }
 

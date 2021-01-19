@@ -25,8 +25,7 @@ class VuexModule extends vuex_module_decorators_1.VuexModule {
 exports.VuexModule = VuexModule;
 function createdModel(module) {
     if (!module.id) {
-        module.id = Number(Math.random().toString().substring(3, 10) +
-            Date.now()).toString(36);
+        module.id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
     }
     module.keys = {};
     lodash_1.map(lodash_1.merge({}, module.actions, module.mutations, module.getters), (o, i) => {
@@ -41,12 +40,12 @@ function Module(options) {
     else {
         return (target) => {
             const store = options.store;
-            const module = createdModel(target);
-            Object.defineProperty(module, 'store', {
+            Object.defineProperty(target, 'store', {
                 get() {
                     return store;
                 }
             });
+            const module = createdModel(target);
             store.registerModule(module.id, vuex_module_decorators_1.Module({ namespaced: true, ...options })(module));
         };
     }

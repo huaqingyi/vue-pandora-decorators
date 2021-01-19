@@ -1,4 +1,4 @@
-import { Service } from './src';
+import { Service } from 'vue-pandora-decorators';
 
 export interface TestAppData {
     username: string;
