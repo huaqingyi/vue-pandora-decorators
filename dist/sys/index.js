@@ -10,9 +10,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-__exportStar(require("./component"), exports);
-__exportStar(require("./vuex"), exports);
-__exportStar(require("./sys"), exports);
+__exportStar(require("./sysort"), exports);
 
-//# sourceMappingURL=sourcemaps/index.js.map
+//# sourceMappingURL=../sourcemaps/sys/index.js.map

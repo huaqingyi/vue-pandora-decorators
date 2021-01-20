@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useCommits = exports.useCommit = exports.useActions = exports.useAction = exports.useState = void 0;
+exports.useService = exports.useCommits = exports.useCommit = exports.useActions = exports.useAction = exports.useState = void 0;
 const vue_1 = require("vue");
 const lodash_1 = require("lodash");
 function useState(module, toComputed) {
@@ -59,5 +59,15 @@ function useCommits(module) {
     return mutations;
 }
 exports.useCommits = useCommits;
+function useService(Service) {
+    if (!Service.id) {
+        Service.id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
+    }
+    if (!Service.getService(Service.id)) {
+        Service.setService(Service.id, new Service());
+    }
+    return Service.getService(Service.id);
+}
+exports.useService = useService;
 
 //# sourceMappingURL=../sourcemaps/vuex/composition.js.map

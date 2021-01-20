@@ -1,6 +1,7 @@
 import { VuexModule, VuexModuleClass } from './model';
 import { computed, ComputedRef } from 'vue';
 import { map } from 'lodash';
+import { ServiceClass } from './service';
 
 type ComputedReadonly<T> = {
     readonly [P in keyof T]: ComputedRef<T[P]>;
@@ -61,4 +62,12 @@ export function useCommits<M>(module: VuexModuleClass<M>): M {
         mutations[n] = (...props: any) => store.dispatch(module.action((module) => module[n]), ...props)
     });
     return mutations;
+}
+
+export function useService<S>(Service: ServiceClass<S>): S {
+    if (!Service.id) {
+        (Service as any).id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
+    }
+    if (!Service.getService(Service.id)) { Service.setService(Service.id, new Service()); }
+    return Service.getService(Service.id);
 }

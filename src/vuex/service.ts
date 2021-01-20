@@ -1,11 +1,10 @@
 import { AxiosInstance } from 'axios';
 
-// tslint:disable-next-line:interface-name
 export interface VuexService {
     http: AxiosInstance;
 }
 
-export const _service: { [x: number]: Service } = {};
+export const _service: { [x: number]: any & Service } = {};
 
 export class Service implements VuexService {
     public http!: AxiosInstance;
@@ -15,7 +14,11 @@ export class Service implements VuexService {
         return _service;
     }
 
-    public static getService(id: number) {
+    public static setService(id: number, service: Service) {
+        return _service[id] = service;
+    }
+
+    public static getService<T>(id: number): T {
         return _service[id];
     }
 
@@ -25,11 +28,3 @@ export class Service implements VuexService {
 }
 
 export declare type ServiceClass<V> = (new (...args: any[]) => V & Service) & typeof Service;
-
-export function useService<S>(Service: ServiceClass<S>): S {
-    if (!Service.id) {
-        (Service as any).id = Number(Math.random().toString().substring(3, 10) + Date.now()).toString(36);
-    }
-    if (!_service[Service.id]) { _service[Service.id] = new Service(); }
-    return (Service as any).getService(Service.id);
-}
