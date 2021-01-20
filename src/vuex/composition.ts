@@ -59,7 +59,7 @@ export function useCommits<M>(module: VuexModuleClass<M>): M {
     const store = module.store;
     const mutations: any = {};
     map(module.mutations, (_f, n) => {
-        mutations[n] = (...props: any) => store.dispatch(module.action((module) => module[n]), ...props)
+        mutations[n] = (...props: any) => store.commit(module.action((module) => module[n]), ...props)
     });
     return mutations;
 }

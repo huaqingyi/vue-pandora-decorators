@@ -54,7 +54,7 @@ function useCommits(module) {
     const store = module.store;
     const mutations = {};
     lodash_1.map(module.mutations, (_f, n) => {
-        mutations[n] = (...props) => store.dispatch(module.action((module) => module[n]), ...props);
+        mutations[n] = (...props) => store.commit(module.action((module) => module[n]), ...props);
     });
     return mutations;
 }
