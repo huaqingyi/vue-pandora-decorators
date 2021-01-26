@@ -46,6 +46,11 @@ export function Module(options: any): any {
                 }
             });
             const module = createdModel(target);
+            if (options.dynamic === true) {
+                if (options.name) { module.id = options.name; }
+                if (!options.name) { options.name = module.id; }
+                return VModule({ namespaced: true, ...options } as ModuleOptions)(module);
+            }
 
             store.registerModule(module.id, VModule({ namespaced: true, ...options } as ModuleOptions)(module));
         }

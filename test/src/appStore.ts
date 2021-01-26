@@ -25,7 +25,8 @@ export class AppStore extends VuexModule implements IAppState {
 
     @Action({ commit: 'testSuccess' })
     public async test(data: AppTestRequset) {
-        return await this.service.test(data);
+        // return await this.service.test(data);
+        return 111;
     }
 
     @Mutation
